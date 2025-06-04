@@ -1,5 +1,6 @@
 import time
 import os
+
 VELOCIDADE_TEXTO = 0.05
 
 def escrever_mensagem(texto):
@@ -28,6 +29,7 @@ def introducao():
     escrever_mensagem("\nEm um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.")
     escrever_mensagem("\nSua missão: impedir que Glozium espalhe a escuridão pela província de Hospitalis.\n")
     input("\n\nAperte Enter para voltar ao Menu...")
+    os.system('cls')
     tela_inicial()
 
 def iniciar_jogo():
@@ -35,4 +37,6 @@ def iniciar_jogo():
     input("Pressione Enter para continuar...")
     print("(As fases ainda serão implementadas...)\n")
     input("Pressione Enter para voltar ao menu...")
+    os.system('cls')
+    tela_inicial()
     
