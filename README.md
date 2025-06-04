@@ -21,6 +21,7 @@ Adquire itens mágicos que influenciam as batalhas
 Clone o repositório:
 
 "git clone https://github.com/seu-usuario/rpg-sandubinha.git"
+
 "cd rpg-sandubinha"
 
 Execute o jogo:
