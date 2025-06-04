@@ -36,9 +36,9 @@ main.py — Arquivo principal, inicia o menu e o jogo
 
 historia.py — Gerencia o menu, introdução e narrativa
 
-personagem.py — (em breve) Gerencia status, vida e itens de Sandubinha
+personagem.py — Gerencia status, vida e itens de Sandubinha
 
-batalha.py — (em breve) Lógica de batalhas entre Sandubinha e monstros
+batalha.py — Lógica de batalhas entre Sandubinha e monstros
 
 README.md — Descrição geral do projeto
 
