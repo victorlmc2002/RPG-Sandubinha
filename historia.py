@@ -13,7 +13,8 @@ def tela_inicial():
     print("1 - Começar a aventura")
     print("2 - Introdução")
     print("3 - Sair")
-    while True:
+    opcao = 0
+    while opcao not in [1, 2, 3]:
         opcao = int(input("Escolha uma opção: "))
         if opcao == 1:
             iniciar_jogo()
@@ -24,7 +25,6 @@ def tela_inicial():
         else:
             print("Opção inválida")
             time.sleep(3)
-
 def introducao():
     escrever_mensagem("\nEm um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.")
     escrever_mensagem("\nSua missão: impedir que Glozium espalhe a escuridão pela província de Hospitalis.\n")
@@ -39,4 +39,3 @@ def iniciar_jogo():
     input("Pressione Enter para voltar ao menu...")
     os.system('cls')
     tela_inicial()
-    
