@@ -1,7 +1,7 @@
 class Sandubinha:
-    def __init__(self, vida_max):
-        self._vida_max = vida_max
-        self._vida_atual = vida_max
+    def __init__(self):
+        self._vida_max = 5
+        self._vida_atual = self._vida_max
         self._items = []
 
     def ganhar_item(self, item):
