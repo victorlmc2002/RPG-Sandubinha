@@ -14,7 +14,8 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
 
     while sandubinha._vida_atual > 0 and inimigo_vida > 0:
         desenhar_texto(f"\n                                                          Rodada {rodada}")
-
+        time.sleep(2)
+        escrever_mensagem(f"\n▶ Turno do Sandubinha")
         #Turno do Sandubinha
     
         qtd_numeros = 1
