@@ -4,12 +4,12 @@ class Sandubinha:
     def __init__(self):
         self._vida_max = 5
         self._vida_atual = self._vida_max
-        self._items = []
-        self._items_ativos = []
+        self._itens = []
+        self._itens_ativos = []
 
     def ganhar_item(self, item):
         from historia import escrever_mensagem, desenhar_texto
-        self._items.append(item)
+        self._itens.append(item)
         escrever_mensagem(f"{item} adicionado ao inventário!")
     
     def receber_dano(self, dano):

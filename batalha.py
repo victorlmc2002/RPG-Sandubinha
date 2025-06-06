@@ -1,9 +1,9 @@
 import random
 import time
+from interface import *
 
 def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_uso=None):
-    from historia import escrever_mensagem, desenhar_texto
-    escrever_mensagem(f"\n⚔️  Início da batalha contra {nome_inimigo}!")
+    escrever_mensagem(f"Início da batalha contra {nome_inimigo}!")
     inimigo_vida = vida_inimigo
 
     # Sorteio dos números secretos (fixos durante a batalha)
@@ -16,7 +16,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         desenhar_texto(f"\n                                                          Rodada {rodada}")
         time.sleep(2)
         escolha_item(sandubinha)
-        escrever_mensagem(f"\n▶ Turno do Sandubinha")
+        escrever_mensagem(f"Turno do Sandubinha")
         #Turno do Sandubinha
     
         qtd_numeros = 1
@@ -32,7 +32,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         escrever_mensagem(f"▶Turno do Sandubinha")
         escrever_mensagem(f"Sorteando {qtd_numeros} número(s)...")
         for i in range(qtd_numeros):
-            numero = random.randint(1, vida_inimigo)
+            numero = secreto_inimigo #random.randint(1, vida_inimigo)
             escrever_mensagem(f"Número sorteado: {numero}")
             if numero == secreto_inimigo:
                 acertos += 1
@@ -40,9 +40,9 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         dano = acertos * secreto_inimigo
         inimigo_vida -= dano
         if dano > 0: 
-            escrever_mensagem(f"💥 {nome_inimigo} sofreu {dano} de dano. Vida restante: {max(0, inimigo_vida)}")
+            escrever_mensagem(f"{nome_inimigo} sofreu {dano} de dano. Vida restante: {max(0, inimigo_vida)}")
         else:
-            escrever_mensagem(f"❌ Nenhum acerto! {nome_inimigo} não sofreu dano.")
+            escrever_mensagem(f" Nenhum acerto! {nome_inimigo} não sofreu dano.")
 
         # Consequência do Faturamentus
         bonus_dano = False
@@ -73,15 +73,9 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
             escrever_mensagem("Sandubinha esquivou dos ataques do inimigo!")
         
         rodada += 1
-        time.sleep(1)
+        time.sleep(1)  
 
-    def escolha_item(sandubinha):
-        if not sandubinha._items:
-            return
-        escrever_mensagem("Você deseja alterar seu equipamento? Atualmente você " \
-        f"possui os seguintes items {desenhar_texto(sandubinha._itens)}")  
-        # Limpa a escolha de item após a batalha
-    escrever_mensagem("\n🏁 Fim da batalha!")
+    escrever_mensagem("Fim da batalha!")
     if sandubinha._vida_atual <= 0:
         escrever_mensagem("☠️  Sandubinha foi derrotado...")
         return False
@@ -89,3 +83,9 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         escrever_mensagem(f"🎉 {nome_inimigo} foi vencido!")
         sandubinha.aumentar_vida_max(2)
         return True
+    
+def escolha_item(sandubinha):
+    if not sandubinha._itens:
+        return
+    escrever_mensagem("Você deseja alterar seu equipamento? Atualmente você " \
+    f"possui os seguintes itens {desenhar_texto(sandubinha._itens)}")
