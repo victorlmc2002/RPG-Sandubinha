@@ -15,6 +15,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
     while sandubinha._vida_atual > 0 and inimigo_vida > 0:
         desenhar_texto(f"\n                                                          Rodada {rodada}")
         time.sleep(2)
+        escolha_item(sandubinha)
         escrever_mensagem(f"\n▶ Turno do Sandubinha")
         #Turno do Sandubinha
     
@@ -74,6 +75,12 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         rodada += 1
         time.sleep(1)
 
+    def escolha_item(sandubinha):
+        if not sandubinha._items:
+            return
+        escrever_mensagem("Você deseja alterar seu equipamento? Atualmente você " \
+        f"possui os seguintes items {desenhar_texto(sandubinha._itens)}")  
+        # Limpa a escolha de item após a batalha
     escrever_mensagem("\n🏁 Fim da batalha!")
     if sandubinha._vida_atual <= 0:
         escrever_mensagem("☠️  Sandubinha foi derrotado...")

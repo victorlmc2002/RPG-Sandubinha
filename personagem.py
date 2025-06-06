@@ -5,6 +5,7 @@ class Sandubinha:
         self._vida_max = 5
         self._vida_atual = self._vida_max
         self._items = []
+        self._items_ativos = []
 
     def ganhar_item(self, item):
         from historia import escrever_mensagem, desenhar_texto
