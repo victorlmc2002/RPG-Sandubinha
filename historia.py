@@ -105,7 +105,7 @@ def floresta_do_atendimentus(sandu):
         tela_inicial()
 
 
-# Fase 2: Cavernas de Faturamentus
+#Fase 2: Cavernas de Faturamentus
 def cavernas_de_faturamentus(sandu):
     escrever_mensagem("     Cavernas de Faturamentus")
     escrever_mensagem("Existe sempre um preço a se pagar pela cura do corpo e da alma...")
@@ -151,7 +151,7 @@ def alerta():
     " perderá o progresso atual." \
     "\n\nPressione Enter para continuar..." \
     "\n\nPressione qualquer outra tecla para continuar...")
-    
+
     pygame.display.flip()
 
     while True:
