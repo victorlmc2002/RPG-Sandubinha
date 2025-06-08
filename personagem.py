@@ -4,12 +4,14 @@ class Sandubinha:
     def __init__(self):
         self._vida_max = 5
         self._vida_atual = self._vida_max
-        self._itens = []
-        self._itens_ativos = []
+        self._itens = ["Estilingue Magico"]
+        self._itens_ativos = ["Desativado"]
 
     def ganhar_item(self, item):
+        if item in self._itens:
+            return
         self._itens.append(item)
-        self._itens_ativos.append(False)
+        self._itens_ativos.append("Desativado")
         escrever_mensagem(f"{item} adicionado ao inventário!")
     
     def receber_dano(self, dano):

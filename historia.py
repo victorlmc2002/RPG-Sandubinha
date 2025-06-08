@@ -104,6 +104,8 @@ def tela_inicial():
                     pygame.quit()
                     sys.exit()
 
+                    
+
 
 def introducao():
     escrever_mensagem("Em um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.")
