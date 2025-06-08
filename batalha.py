@@ -29,7 +29,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         #Outros itens podem ser adicionados aqui futuramente
 
         acertos = 0
-        escrever_mensagem(f"▶Turno do Sandubinha")
+        escrever_mensagem(f"Turno do Sandubinha")
         escrever_mensagem(f"Sorteando {qtd_numeros} número(s)...")
         for i in range(qtd_numeros):
             numero = secreto_inimigo #random.randint(1, vida_inimigo)
@@ -55,7 +55,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
         time.sleep(1)
 
         # Turno do inimigo
-        escrever_mensagem(f"▶ Turno do {nome_inimigo}")
+        escrever_mensagem(f"Turno do {nome_inimigo}")
         inimigo_numeros = numeros_por_rodada
         acertos = 0
         for i in range(inimigo_numeros):
@@ -77,15 +77,50 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, item_em_
 
     escrever_mensagem("Fim da batalha!")
     if sandubinha._vida_atual <= 0:
-        escrever_mensagem("☠️  Sandubinha foi derrotado...")
+        escrever_mensagem("Sandubinha foi derrotado...")
         return False
     else:
-        escrever_mensagem(f"🎉 {nome_inimigo} foi vencido!")
+        escrever_mensagem(f"{nome_inimigo} foi vencido!")
         sandubinha.aumentar_vida_max(2)
         return True
     
 def escolha_item(sandubinha):
-    if not sandubinha._itens:
+    if len(sandubinha._itens) <= 0:
         return
-    escrever_mensagem("Você deseja alterar seu equipamento? Atualmente você " \
-    f"possui os seguintes itens {desenhar_texto(sandubinha._itens)}")
+    msg = "Você deseja alterar seu equipamento? Atualmente você " \
+    f"possui os \nseguintes itens: "
+    for i in range(len(sandubinha._itens)):
+        msg += "\n" + str(i+1) + sandubinha._itens[i]
+    while True:
+        desenhar_texto(msg)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1 and len(sandubinha._itens) >= 1:
+                    print(sandubinha._itens[0])
+                    if sandubinha._itens_ativos[0] == True:
+                        sandubinha._itens_ativos[0] = False
+                    else:
+                        sandubinha._itens_ativos[0] = True
+                    return
+                elif event.key == pygame.K_2 and len(sandubinha._itens) >= 2:
+                    if sandubinha._itens_ativos[1] == True:
+                        sandubinha._itens_ativos[1] = False
+                    else:
+                        sandubinha._itens_ativos[1] = True
+                    return
+                elif event.key == pygame.K_3 and len(sandubinha._itens) >= 3:
+                    if sandubinha._itens_ativos[2] == True:
+                        sandubinha._itens_ativos[2] = False
+                    else:
+                        sandubinha._itens_ativos[2] = True
+                    return
+                elif event.key == pygame.K_4 and len(sandubinha._itens) >= 4:
+                    if sandubinha._itens_ativos[3] == True:
+                        sandubinha._itens_ativos[3] = False
+                    else:
+                        sandubinha._itens_ativos[3] = True
+                    return
