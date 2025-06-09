@@ -41,6 +41,8 @@ personagem.py — Gerencia status, vida e itens de Sandubinha
 
 batalha.py — Lógica de batalhas entre Sandubinha e monstros
 
+interface.py — Gerencia as funções de display no Pygame
+
 README.md — Descrição geral do projeto
 
 
@@ -48,7 +50,7 @@ README.md — Descrição geral do projeto
 
 Python 
 
-Modo texto (console)
+Biblioteca Pygame
 
 
 # 🎓 Créditos
