@@ -30,3 +30,8 @@ class Sandubinha:
         self._vida_max += aumento
         self._vida_atual = self._vida_max
         escrever_mensagem(f"Vida máxima aumentada para {self._vida_max} PV!")
+    
+    def espada_zg(self):
+        self._itens = ["Espada ZG"]
+        self._itens_ativos = ["Desativado"]
+        escrever_mensagem("A lendária Espada ZG foi confeccionada! Sandubinha agora pode derrotar Glozium de uma vez por todas!")

@@ -14,7 +14,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
 
     #Loop da batalha
     while sandubinha._vida_atual > 0 and inimigo_vida > 0:
-        desenhar_texto(f"\n                                                          Rodada {rodada}")
+        desenhar_texto(f"\nRodada {rodada}", LARGURA/2)
         time.sleep(2)
 
         #Variáveis
@@ -42,6 +42,10 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
                 qtd_numeros += 10
             elif i == "Colar da Estátua Sagrada" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
                 qtd_numeros += 10
+            elif i == "Espada ZG" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
+                escrever_mensagem("A Espada ZG brilha intensamente, Sandubinha está pronto para a batalha!")
+                qtd_numeros = 40
+
 
         #Turno do Sandubinha    
         escrever_mensagem(f"Turno do Sandubinha")
@@ -58,9 +62,12 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
         else:
             for i in range(qtd_numeros):
                 numero = secreto_inimigo#random.randint(1, vida_inimigo)
-                escrever_mensagem(f"Número sorteado: {numero}")
+                if qtd_numeros < 20:
+                    escrever_mensagem(f"Número sorteado: {numero}")
                 if numero == secreto_inimigo:
                     acertos += 1
+            if qtd_numeros > 20:
+                escrever_mensagem(f"Sandubinha sorteou {qtd_numeros} números, e acertou {acertos} vezes!")
 
         #Cálculo do dano ao inimigo
         if "Azah Transmissão" in sandubinha._itens:

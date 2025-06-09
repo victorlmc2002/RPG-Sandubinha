@@ -8,12 +8,12 @@ FONTE = pygame.font.SysFont("arial", 28)
 LARGURA, ALTURA = 800, 600
 TELA = pygame.display.set_mode((LARGURA, ALTURA))
 
-def desenhar_texto(texto, y=50):
+def desenhar_texto(texto, x = 40, y=50):
     TELA.fill((30, 30, 30))
     linhas = texto.split('\n')
     for i, linha in enumerate(linhas):
         img = FONTE.render(linha, True, (255, 255, 255))
-        TELA.blit(img, (40, y + i * 40))
+        TELA.blit(img, (x, y + i * 40))
     pygame.display.flip()
 
 def esperar_enter():
