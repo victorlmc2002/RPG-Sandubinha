@@ -4,8 +4,8 @@ class Sandubinha:
     def __init__(self):
         self._vida_max = 5
         self._vida_atual = self._vida_max
-        self._itens = ["Estilingue Magico"]
-        self._itens_ativos = ["Desativado"]
+        self._itens = []
+        self._itens_ativos = []
 
     def ganhar_item(self, item):
         if item in self._itens:
@@ -30,6 +30,3 @@ class Sandubinha:
         self._vida_max += aumento
         self._vida_atual = self._vida_max
         escrever_mensagem(f"Vida máxima aumentada para {self._vida_max} PV!")
-
-    def usar_item(self, item):
-        print(f"Usando item: {item}")

@@ -25,9 +25,8 @@ def esperar_enter():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 return
             
-def escrever_mensagem(texto):
+def escrever_mensagem(texto, x=40, y=50):
     TELA.fill((30, 30, 30))
-    x, y = 40, 50
     linhas = []
     largura_max = LARGURA - 80 
     palavras = texto.split(' ')

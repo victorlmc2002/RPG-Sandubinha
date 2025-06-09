@@ -6,7 +6,7 @@ from interface import *
 
 #Fase 1: Floresta do Atendimentus
 def floresta_do_atendimentus(sandu):
-    escrever_mensagem("     Floresta do Atendimentus")
+    escrever_mensagem("Floresta do Atendimentus", LARGURA/2)
     escrever_mensagem("Um lugar encantado,dizem que pessoas doentes ou com almas feridas podem ir a floresta para serem curadas.")
     escrever_mensagem("Sandubinha percorre a floresta e encontra um monstro tenebroso.")
     escrever_mensagem("Sandubinha: Então você é meu primeiro desafio nessa floresta encantada?")
@@ -18,20 +18,23 @@ def floresta_do_atendimentus(sandu):
     escrever_mensagem("Sandubinha: Primeiro, não é enfraquecer, vou dar um fim total em Glozium... Venha monnstro gigante!")
     desenhar_texto("Pressione Enter para iniciar a batalha...")
 
-    vitoria = batalha(sandu, "Monstrengo", vida_inimigo=3, numeros_por_rodada=1)
-    if vitoria:
+    vitoria = batalha(sandu, "Monstrengo", 3, 1)
+    if vitoria == 0:
         escrever_mensagem("Processus: Muito obrigado, tome o artefato 'Guia de Atendimento' e siga para o próximo desafio.")
         sandu.ganhar_item("Guia de Atendimento")
-    else:
+        return
+    elif vitoria == 1:
         escrever_mensagem("Processus: Oh não... o mundo será mais uma vez destruído por Glozium...")
         escrever_mensagem("O mundo foi destruído por Glozium. Fim de jogo!")
         escrever_mensagem("Pressione Enter para voltar ao menu...")
         tela_inicial()
+    else:
+        return
 
 
 #Fase 2: Cavernas de Faturamentus
 def cavernas_de_faturamentus(sandu):
-    escrever_mensagem("     Cavernas de Faturamentus")
+    escrever_mensagem("Cavernas de Faturamentus")
     escrever_mensagem("Existe sempre um preço a se pagar pela cura do corpo e da alma...")
     escrever_mensagem("Após a floresta do atendimentus, o preço é calculado pelo tipo de contrato divino.")
     escrever_mensagem("Percorrendo a caverna segurando uma tocha.")
@@ -41,20 +44,48 @@ def cavernas_de_faturamentus(sandu):
     escrever_mensagem("Urso Sangrento: Finalmente diversão! Vamos lutar heroizinho!")
     escrever_mensagem("Sandubinha: Criatura desagradável, nem me deu tempo de tomar uma água!")
 
-    vitoria = batalha(sandu, "Urso Sangrento", vida_inimigo=6, numeros_por_rodada=2)
-    if vitoria:
+    vitoria = batalha(sandu, "Urso Sangrento", 6, 2)
+    if vitoria == 0:
         escrever_mensagem("Ancião Faturador: Muito obrigado, mas tô ocupado demais para agradecimentos longos, tome o artefato sagrado e siga em frente.")
         sandu.ganhar_item("Faturamentus")
-    else:
+        return
+    elif vitoria == 1:
         escrever_mensagem("Ancião Faturador: Herói merda, nem para cumprir o trabalho dele, estamos perdidos!")
         escrever_mensagem("O mundo foi destruído por Glozium, uma fatalidade terrível...Fim de jogo!")
         escrever_mensagem("Pressione Enter para voltar ao menu...")
         tela_inicial()
+    else: 
+        return
+
+#Fase 3: Vila da Transmissão
+def vila_da_trasmissao(sandu):
+    escrever_mensagem("Vila da Transmissão", LARGURA/2)
+    escrever_mensagem("Uma vila mágica que recebe cobranças vindas das cavernas de Faturamentus. Os moradores entregam as mensagens na Torre")
+    escrever_mensagem("Sandubinha é bem recebido em sua chegada. Ele é convidado para um jantar ritualístico com comidas típicas")
+    escrever_mensagem("Os moradores contam que o monstro a ser enfrentado é um ser que voa. Para atacá-lo, o Sandubinha terá que derrubar o monstro e usar sua espada. Então, dão a ele um item, o Estilingue Mágico")
+    sandu.ganhar_item("Estilingue Mágico")
+    escrever_mensagem("Logo, um monstro em forma de dragão surge voando...")
+    escrever_mensagem("Dragão da transmissão: Você já tem sua arma... já fui guardião dessas terras e transmitia as mensagens à torre. Mas milénios atrás Glozium me tornou seu escravo, sou obrigado a lutar com toda fúria. Livre-me do sofrimento...")
+    escrever_mensagem("Sandubinha: Você também está preso a um destino que não escolheu, vou te libertar!")
+    
+    vitoria = batalha(sandu, "Dragão da Transmissão", 12, 3)
+    if vitoria == 0:
+        escrever_mensagem("Dragão - muito obrigado, todo herói evitava essa batalha e seguia para a torre, agora sou livre!")
+        escrever_mensagem("Sandubinha: evitava? E dá para seguir sem lutar? como assim? Sandubinha ganha o artefato Azah Transmissão")
+        sandu.ganhar_item("Azah Transmissão")
+        return
+    elif vitoria == 1:
+        escrever_mensagem("Dragão - Sinto muito herói, que sua alma seja livre...")
+        escrever_mensagem("O mundo foi destruído por Glozium, uma fatalidade terrível...Fim de jogo!")
+        escrever_mensagem("Pressione Enter para voltar ao menu...")
+        tela_inicial()
+    else:
+        return
 
 def menu_fases(sandu):
     while True:
         TELA.fill((30, 30, 30))
-        desenhar_texto("Escolha uma fase:\n1 - Floresta do Atendimentus\n2 - Cavernas de Faturamentus\n3 - Voltar ao menu", 100)
+        desenhar_texto("Escolha uma fase:\n1 - Floresta do Atendimentus\n2 - Cavernas de Faturamentus\n3 - Vila da Transmissão\n4 - Torre de Contas a Receber\n5 - Glozium\n6 - Voltar ao menu", 100)
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -66,6 +97,12 @@ def menu_fases(sandu):
                 elif event.key == pygame.K_2:
                     cavernas_de_faturamentus(sandu)
                 elif event.key == pygame.K_3:
+                    vila_da_trasmissao(sandu)
+                elif event.key == pygame.K_4:
+                    pass
+                elif event.key == pygame.K_5:
+                    pass
+                elif event.key == pygame.K_6:
                     if alerta():
                         tela_inicial()
                     else:

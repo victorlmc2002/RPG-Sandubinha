@@ -24,7 +24,10 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
         atordoado = False
         voando = False
 
-        escolha_item(sandubinha)
+        if escolha_item(sandubinha) == False:
+            escrever_mensagem("Sandubinha decide fazer uma 'retirada estratégica'...")
+            return 2
+        
 
         #Regula a quantidade números sorteados com base nos itens equipados
         for i in sandubinha._itens:
@@ -32,7 +35,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
                 qtd_numeros = 2
             elif i == "Faturamentus" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
                 qtd_numeros = 4
-            elif i == "Estilingue Magico" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
+            elif i == "Estilingue Mágico" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
                 qtd_numeros = int(vida_inimigo / 2)
                 atordoado = True
             elif i == "Azah Transmissão" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
@@ -46,11 +49,18 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
         escrever_mensagem(f"Sorteando {qtd_numeros} número(s)...")
 
         #Cálculo da quantidade de acertos
-        for i in range(qtd_numeros):
-            numero = random.randint(1, vida_inimigo)
-            escrever_mensagem(f"Número sorteado: {numero}")
-            if numero == secreto_inimigo:
-                acertos += 1
+        if nome_inimigo == "Dragão da Transmissão" and sandubinha._itens_ativos[sandubinha._itens.index("Estilingue Mágico")] != "Ativado":
+            if not voando:
+                escrever_mensagem("Sandubinha se prepara para atacar, mas o Dragão levanta voo e desvia dos ataques")
+            if voando:
+                escrever_mensagem("Sua espada não consegue alcançar o Dragão")
+            escrever_mensagem("Sandubinha percebe o Estilingue que recebeu dos moradores...")
+        else:
+            for i in range(qtd_numeros):
+                numero = secreto_inimigo#random.randint(1, vida_inimigo)
+                escrever_mensagem(f"Número sorteado: {numero}")
+                if numero == secreto_inimigo:
+                    acertos += 1
 
         #Cálculo do dano ao inimigo
         if "Azah Transmissão" in sandubinha._itens:
@@ -62,9 +72,11 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
             dano = acertos * secreto_inimigo
             inimigo_vida -= dano
         if dano > 0: 
-            if "Estilingue Magico" in sandubinha._itens:
-                if sandubinha._itens_ativos[sandubinha._itens.index("Estilingue Magico")] == "Ativado" and acertos <= 0:
+            if "Estilingue Mágico" in sandubinha._itens:
+                if sandubinha._itens_ativos[sandubinha._itens.index("Estilingue Mágico")] == "Ativado" and acertos <= 0:
                     escrever_mensagem("O Estilingue Mágico acerta e atordoa o inimigo!")
+                    if voando:
+                        escrever_mensagem("O Dragão despenca ao chão")
             escrever_mensagem(f"{nome_inimigo} sofreu {dano} de dano. Vida restante: {max(0, inimigo_vida)}")
         else:
             escrever_mensagem(f"Nenhum acerto! {nome_inimigo} não sofreu dano.")
@@ -75,8 +87,8 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
             if sandubinha._itens_ativos[sandubinha._itens.index("Faturamentus")] == "Ativado" and acertos <= 0:
                 bonus_dano = True
         #Consequência do Estilingue Mágico
-        if "Estilingue Magico" in sandubinha._itens:
-            if sandubinha._itens_ativos[sandubinha._itens.index("Estilingue Magico")] == "Ativado" and acertos <= 0:
+        if "Estilingue Mágico" in sandubinha._itens:
+            if sandubinha._itens_ativos[sandubinha._itens.index("Estilingue Mágico")] == "Ativado" and acertos <= 0:
                 if erros >= 3:
                     escrever_mensagem("O Estilingue Mágico não conseguiu acertar o inimigo 3 vezes! E Sandubinha perdeu 1 de pv!")
                     sandubinha.receber_dano(1)
@@ -87,8 +99,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
         
         #Condição de derrota
         if sandubinha._vida_atual <= 0:
-            escrever_mensagem("Sandubinha foi derrotado...")
-            return False
+            break
         #Condição vitória
         if inimigo_vida <= 0:
             break
@@ -128,25 +139,27 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada):
         rodada += 1
         time.sleep(1)  
 
+    #Fim da batalha
     escrever_mensagem("Fim da batalha!")
     if sandubinha._vida_atual <= 0:
         escrever_mensagem("Sandubinha foi derrotado...")
-        return False
+        return 1
     else:
         escrever_mensagem(f"{nome_inimigo} foi vencido!")
         sandubinha.aumentar_vida_max(2)
-        return True
+        return 0
     
 def escolha_item(sandubinha):
-    if len(sandubinha._itens) <= 0:
-        return
-    
+
     while True:
-        msg = "Você deseja alterar seu equipamento? Atualmente você " \
-        f"possui os \nseguintes itens: "
+        if len(sandubinha._itens) <= 0:
+            msg = "Atualmente você não possui equipamentos\n\n"
+        else:
+            msg = "Você deseja alterar seu equipamento? Atualmente você " \
+                f"possui os \nseguintes itens: "
         for i in range(len(sandubinha._itens)):
             msg += "\n" + str(i+1) + " - " + sandubinha._itens[i] + " - " + str(sandubinha._itens_ativos[i])
-        msg += "\n Aperte Enter para voltar"
+        msg += "\nAperte Enter para voltar\nEsc para fugir da batalha"
 
         desenhar_texto(msg)
         pygame.display.flip()
@@ -182,3 +195,5 @@ def escolha_item(sandubinha):
                         sandubinha._itens_ativos[4] = "Ativado"
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                     return
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    return False
