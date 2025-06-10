@@ -8,8 +8,11 @@ FONTE = pygame.font.SysFont("arial", 28)
 LARGURA, ALTURA = 800, 600
 TELA = pygame.display.set_mode((LARGURA, ALTURA))
 
-def desenhar_texto(texto, x = 40, y=50):
-    TELA.fill((30, 30, 30))
+def desenhar_texto(texto, x=40, y=50, fundo=None):
+    if fundo:
+        TELA.blit(fundo, (0, 0))
+    else:
+        TELA.fill((30, 30, 30))
     linhas = texto.split('\n')
     for i, linha in enumerate(linhas):
         img = FONTE.render(linha, True, (255, 255, 255))
@@ -24,9 +27,14 @@ def esperar_enter():
                 sys.exit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 return
-            
-def escrever_mensagem(texto, x=40, y=50):
-    TELA.fill((30, 30, 30))
+
+def desenhar_fundo(fundo):
+    if fundo:
+        TELA.blit(fundo, (0, 0))
+    else:
+        TELA.fill((30, 30, 30))   
+def escrever_mensagem(texto, x=40, y=450, fundo=None):
+    desenhar_fundo(fundo)
     linhas = []
     largura_max = LARGURA - 80 
     palavras = texto.split(' ')
@@ -56,7 +64,7 @@ def escrever_mensagem(texto, x=40, y=50):
         buffer_linha = ""
         for c in linha:
             buffer_linha += c
-            TELA.fill((30, 30, 30))
+            desenhar_fundo(fundo)
             for i in range(idx_linha):
                 img = FONTE.render(linhas[i], True, (255, 255, 255))
                 TELA.blit(img, (x, y + i * 40))
@@ -69,6 +77,6 @@ def escrever_mensagem(texto, x=40, y=50):
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                    return                
+                    return
         idx_linha += 1
     esperar_enter()
