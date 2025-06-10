@@ -24,6 +24,14 @@ mn = pygame.image.load("img/menu.jpg").convert()
 mn = pygame.transform.scale(mn, (LARGURA, ALTURA))
 mapa = pygame.image.load("img/mapa.png").convert()
 mapa = pygame.transform.scale(mapa, (LARGURA, ALTURA))
+montanha = pygame.image.load("img/montanha.png").convert()
+montanha = pygame.transform.scale(montanha, (LARGURA, ALTURA))
+glozium = pygame.image.load("img/Glozium.png").convert()
+glozium = pygame.transform.scale(glozium, (LARGURA, ALTURA))
+pessoas = pygame.image.load("img/pessoas.png").convert()
+pessoas = pygame.transform.scale(pessoas, (LARGURA, ALTURA))
+sanduba = pygame.image.load("img/Sandubinha.png").convert()
+sanduba = pygame.transform.scale(sanduba, (LARGURA, ALTURA))
 
 #Fase 1: Floresta do Atendimentus
 def floresta_do_atendimentus(sandu):
@@ -280,9 +288,13 @@ def tela_inicial():
 
             
 def introducao():
-    escrever_mensagem("Em um mundo ameaçado por forças sombrias, o aprendiz de guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium para impedir que a escuridão se espalhe pela província de hospitalis.", fundo=mn)
-    escrever_mensagem("Para isso, ele deverá explorar terras perigosas, resolver enigmas mágicos, fazer alianças, enfrentar criaturas e tomar decisões que definirão o destino do reino.", fundo=mn)
-    desenhar_texto("Aperte Enter para voltar ao Menu...", fundo=mn)
+    escrever_mensagem("Vindo de onde os olhos não conseguiam alcançar, com um som alto, passando pelas montanhas e vales, pelos rios e florestas. Todos no mundo puderam ouvir uma voz que parecia um estrondo, que dizia:", fundo=montanha)
+    escrever_mensagem("Contemplem seu novo mestre, Glozium...Demonstrativus potentiaaam!!", fundo=glozium)
+    escrever_mensagem("O terror recaiu sobre as pessoas e o mundo foi tomado por uma neblina que provocou todo tipo de mazela. Alguns morreram, outros tornaram-se monstros, animais sofreram mutações.", fundo=pessoas)
+    escrever_mensagem("Mas após a dissolução dessa terrível onda mortífera, era possível ver em meio a neblina o que pareciam estátuas em pé, onde o som foi mais intenso...", fundo=pessoas)
+    escrever_mensagem("Agora, m um mundo ameaçado por forças sombrias, o aprendiz de guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium para impedir que a escuridão se espalhe pela província de hospitalis.", fundo=sanduba)
+    escrever_mensagem("Para isso, ele deverá explorar terras perigosas, resolver enigmas mágicos, fazer alianças, enfrentar criaturas e tomar decisões que definirão o destino do reino.", fundo=sanduba)
+    desenhar_texto("Aperte Enter para voltar ao Menu...", fundo=sanduba)
     esperar_enter()
 
 def iniciar_jogo():
