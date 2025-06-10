@@ -7,7 +7,7 @@ from interface import *
 pygame.mixer.init()
 pygame.mixer.music.load("medieval-background.mp3")
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.01)
+pygame.mixer.music.set_volume(0.1)
 
 f1 = pygame.image.load("img/fase1.jpg").convert()
 f1 = pygame.transform.scale(f1, (LARGURA, ALTURA))
@@ -303,6 +303,3 @@ def iniciar_jogo():
     desenhar_texto("Pressione Enter para continuar...", fundo=mn)
     esperar_enter()
     menu_fases(sandu)
-
-if __name__ == "__main__":
-    tela_inicial()
