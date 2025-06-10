@@ -7,7 +7,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, img):
     time.sleep(2)
     inimigo_vida = vida_inimigo
 
-    # Sorteio dos números secretos (fixos durante a batalha)
+    # Sorteio dos números secretos
     secreto_sandu = random.randint(1, sandubinha._vida_max)
     secreto_inimigo = random.randint(1, vida_inimigo)
     escrever_mensagem(f"O número secreto do Sandubinha: {secreto_sandu}", fundo=img)
@@ -62,7 +62,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, img):
             escrever_mensagem("Sandubinha percebe o Estilingue que recebeu dos moradores...", fundo=img)
         else:
             for i in range(qtd_numeros):
-                numero = secreto_inimigo#random.randint(1, vida_inimigo)
+                numero = random.randint(1, vida_inimigo)
                 if qtd_numeros < 20:
                     escrever_mensagem(f"Número sorteado: {numero}", fundo=img)
                 if numero == secreto_inimigo:
@@ -116,7 +116,7 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, img):
 
         time.sleep(1)
 
-        # Turno do inimigo
+        #Turno do inimigo
         escrever_mensagem(f"Turno do {nome_inimigo}", fundo=img)
         inimigo_numeros = numeros_por_rodada
         acertos = 0

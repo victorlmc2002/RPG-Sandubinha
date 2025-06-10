@@ -7,7 +7,7 @@ from interface import *
 pygame.mixer.init()
 pygame.mixer.music.load("medieval-background.mp3")
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.00)
+pygame.mixer.music.set_volume(0.01)
 
 f1 = pygame.image.load("img/fase1.jpg").convert()
 f1 = pygame.transform.scale(f1, (LARGURA, ALTURA))
@@ -28,7 +28,7 @@ def floresta_do_atendimentus(sandu):
     escrever_mensagem("Floresta do Atendimentus", LARGURA/2 - LARGURA/8, fundo=f1)
     escrever_mensagem("Um lugar encantado,dizem que pessoas doentes ou com almas feridas podem ir a floresta para serem curadas.", fundo=f1)
     escrever_mensagem("Sandubinha percorre a floresta e encontra um monstro tenebroso.", fundo=f1)
-    escrever_mensagem("Sandubinha: Então você é meu primeiro desafio nessa floresta encantada?", fundo=f1),
+    escrever_mensagem("Sandubinha: Então você é meu primeiro desafio nessa floresta encantada?", fundo=f1)
     escrever_mensagem("Processus: Bem-vindo, vejo que você é um dos escolhidos para enfraquecer Glozium, meu nome é Processus ministerii.", fundo=f1)
     escrever_mensagem("Processus: Sou o ser mágico que atende as almas feridas, envio os informativos disso as cavernas de Faturamentus.", fundo=f1)
     escrever_mensagem("Processus: Você não irá lutar comigo, mas sim contra esse ser criado por Glozium chamado Monstrengo.", fundo=f1)
@@ -79,7 +79,7 @@ def cavernas_de_faturamentus(sandu):
         return
 
 #Fase 3: Vila da Transmissão
-def vila_da_trasmissao(sandu):
+def vila_da_transmissao(sandu):
     escrever_mensagem("Vila da Transmissão", LARGURA/2 - LARGURA/8, fundo=f3)
     escrever_mensagem("Uma vila mágica que recebe cobranças vindas das cavernas de Faturamentus. Os moradores entregam as mensagens na Torre", fundo=f3)
     escrever_mensagem("Sandubinha é bem recebido em sua chegada. Ele é convidado para um jantar ritualístico com comidas típicas", fundo=f3)
@@ -188,12 +188,16 @@ def batalha_final(sandu):
     else:
         return
       
+def verificar_opcao_espada_zg(sandu):
+    if len(sandu._itens) == 5 and "Espada ZG" not in sandu._itens:
+        return "\n\n7 - Confecionar a Espada ZG!"
+    return ""
+
 def menu_fases(sandu):
     while True:
         TELA.blit(mn, (0, 0))
         texto = "Escolha uma fase:\n1 - Floresta do Atendimentus\n2 - Cavernas de Faturamentus\n3 - Vila da Transmissão\n4 - Torre de Contas a Receber\n5 - Glozium\n6 - Voltar ao menu"
-        if len(sandu._itens) == 5 and "Espada ZG" not in sandu._itens:
-            texto += "\n\n7 - Confecionar a Espada ZG!"
+        texto += verificar_opcao_espada_zg(sandu)
         desenhar_texto(texto, 300, fundo=mn)
         pygame.display.flip()
         for event in pygame.event.get():
@@ -206,7 +210,7 @@ def menu_fases(sandu):
                 elif event.key == pygame.K_2:
                     cavernas_de_faturamentus(sandu)
                 elif event.key == pygame.K_3:
-                    vila_da_trasmissao(sandu)
+                    vila_da_transmissao(sandu)
                 elif event.key == pygame.K_4:
                     torre_de_contas_a_receber(sandu)
                 elif event.key == pygame.K_5:
@@ -217,7 +221,7 @@ def menu_fases(sandu):
                     else:
                         continue
                 elif event.key == pygame.K_7:
-                    sandu.espada_zg()
+                    sandu.espada_zg(mn)
 def alerta():
     desenhar_texto("            Atenção!\n\n Se você voltar ao menu," \
     " perderá o progresso atual." \
@@ -235,6 +239,7 @@ def alerta():
                 return event.key == pygame.K_RETURN
 
 def tela_inicial():
+    
     while True:
         desenhar_texto("A Jornada Do Sandubinha\n\n1 - Começar a aventura\n2 - Introdução\n3 - Sair", 300, fundo=mn)
         pygame.display.flip()
@@ -251,13 +256,11 @@ def tela_inicial():
                     pygame.quit()
                     sys.exit()
 
-                    
-
-
+            
 def introducao():
-    escrever_mensagem("Em um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.")
-    escrever_mensagem("Sua missão: impedir que Glozium espalhe a escuridão pela província de Hospitalis.")
-    escrever_mensagem("Aperte Enter para voltar ao Menu...")
+    escrever_mensagem("Em um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.", fundo=mn)
+    escrever_mensagem("Sua missão: impedir que Glozium espalhe a escuridão pela província de Hospitalis.", fundo=mn)
+    escrever_mensagem("Aperte Enter para voltar ao Menu...", fundo=mn)
 
 def iniciar_jogo():
     sandu = Sandubinha()
