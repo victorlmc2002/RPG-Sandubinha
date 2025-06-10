@@ -22,6 +22,8 @@ ff = pygame.transform.scale(ff, (LARGURA, ALTURA))
 
 mn = pygame.image.load("img/menu.jpg").convert()
 mn = pygame.transform.scale(mn, (LARGURA, ALTURA))
+mapa = pygame.image.load("img/mapa.png").convert()
+mapa = pygame.transform.scale(mapa, (LARGURA, ALTURA))
 
 #Fase 1: Floresta do Atendimentus
 def floresta_do_atendimentus(sandu):
@@ -128,6 +130,26 @@ def torre_de_contas_a_receber(sandu):
 def batalha_final(sandu):
     escrever_mensagem("Batalha Final", LARGURA/2 - LARGURA/8, fundo=ff)
     TELA.fill((200, 200, 30))
+    if sandu._vida_max < 10:
+        while True:
+            desenhar_texto("ATENÇÃO\nSandubinha no momento está muito fraco para enfrentar Glozium" \
+            "\nVocê deseja voltar ao menu ou continuar?" \
+            "\n\n\n\nEnter para voltar ao menu" \
+            "\nEsc para continuar", fundo=ff)
+            continuar = False
+
+            pygame.display.flip()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                    return
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    continuar = True
+            if continuar:
+                break
     if len(sandu._itens) == 5:
         while True:
             desenhar_texto("ATENÇÃO\nSandubinha coletou todos os itens precisos para Espada ZG" \
@@ -195,10 +217,10 @@ def verificar_opcao_espada_zg(sandu):
 
 def menu_fases(sandu):
     while True:
-        TELA.blit(mn, (0, 0))
+        TELA.blit(mapa, (0, 0))
         texto = "Escolha uma fase:\n1 - Floresta do Atendimentus\n2 - Cavernas de Faturamentus\n3 - Vila da Transmissão\n4 - Torre de Contas a Receber\n5 - Glozium\n6 - Voltar ao menu"
         texto += verificar_opcao_espada_zg(sandu)
-        desenhar_texto(texto, 300, fundo=mn)
+        desenhar_texto(texto, 300, fundo=mapa)
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -258,14 +280,16 @@ def tela_inicial():
 
             
 def introducao():
-    escrever_mensagem("Em um mundo ameaçado por forças sombrias, o jovem guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium.", fundo=mn)
-    escrever_mensagem("Sua missão: impedir que Glozium espalhe a escuridão pela província de Hospitalis.", fundo=mn)
-    escrever_mensagem("Aperte Enter para voltar ao Menu...", fundo=mn)
+    escrever_mensagem("Em um mundo ameaçado por forças sombrias, o aprendiz de guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium para impedir que a escuridão se espalhe pela província de hospitalis.", fundo=mn)
+    escrever_mensagem("Para isso, ele deverá explorar terras perigosas, resolver enigmas mágicos, fazer alianças, enfrentar criaturas e tomar decisões que definirão o destino do reino.", fundo=mn)
+    desenhar_texto("Aperte Enter para voltar ao Menu...", fundo=mn)
+    esperar_enter()
 
 def iniciar_jogo():
     sandu = Sandubinha()
     escrever_mensagem("Você acorda com uma sensação estranha... É hora de iniciar sua missão épica!", fundo=mn)
     desenhar_texto("Pressione Enter para continuar...", fundo=mn)
+    esperar_enter()
     menu_fases(sandu)
 
 if __name__ == "__main__":
