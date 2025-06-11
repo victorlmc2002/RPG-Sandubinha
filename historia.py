@@ -285,7 +285,7 @@ def introducao():
     escrever_mensagem("Contemplem seu novo mestre, Glozium...Demonstrativus potentiaaam!!", fundo=glozium)
     escrever_mensagem("O terror recaiu sobre as pessoas e o mundo foi tomado por uma neblina que provocou todo tipo de mazela. Alguns morreram, outros tornaram-se monstros, animais sofreram mutações.", fundo=pessoas)
     escrever_mensagem("Mas após a dissolução dessa terrível onda mortífera, era possível ver em meio a neblina o que pareciam estátuas em pé, onde o som foi mais intenso...", fundo=pessoas)
-    escrever_mensagem("Agora, m um mundo ameaçado por forças sombrias, o aprendiz de guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium para impedir que a escuridão se espalhe pela província de hospitalis.", fundo=sanduba)
+    escrever_mensagem("Agora, em um mundo ameaçado por forças sombrias, o aprendiz de guerreiro Sandubinha é convocado pela antiga guilda de Zerum Glozium para impedir que a escuridão se espalhe pela província de hospitalis.", fundo=sanduba)
     escrever_mensagem("Para isso, ele deverá explorar terras perigosas, resolver enigmas mágicos, fazer alianças, enfrentar criaturas e tomar decisões que definirão o destino do reino.", fundo=sanduba)
     desenhar_texto("Aperte Enter para voltar ao Menu...", fundo=sanduba)
     esperar_enter()
