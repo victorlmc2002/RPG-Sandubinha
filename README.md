@@ -45,6 +45,10 @@ interface.py — Gerencia as funções de display no Pygame
 
 README.md — Descrição geral do projeto
 
+medieval-background.mp3 - Música de fundo
+
+img - Pasta onde estão localizadas as imagens
+
 
 # 🛠️ Tecnologias
 
