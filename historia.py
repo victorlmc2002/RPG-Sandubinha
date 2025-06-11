@@ -4,11 +4,6 @@ from personagem import Sandubinha
 from batalha import batalha
 from interface import *
 
-pygame.mixer.init()
-pygame.mixer.music.load("medieval-background.mp3")
-pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.1)
-
 f1 = pygame.image.load("img/fase1.jpg").convert()
 f1 = pygame.transform.scale(f1, (LARGURA, ALTURA))
 f2 = pygame.image.load("img/fase2.jpg").convert()
