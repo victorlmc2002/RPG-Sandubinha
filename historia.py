@@ -57,7 +57,6 @@ def floresta_do_atendimentus(sandu):
     else:
         return
 
-
 #Fase 2: Cavernas de Faturamentus
 def cavernas_de_faturamentus(sandu):
     escrever_mensagem("Cavernas de Faturamentus", LARGURA/2 - LARGURA/8, fundo=f2)
