@@ -250,7 +250,7 @@ def alerta():
     desenhar_texto("            Atenção!\n\n Se você voltar ao menu," \
     " perderá o progresso atual." \
     "\n\nPressione Enter para continuar..." \
-    "\n\nPressione qualquer outra tecla para continuar...", fundo=mn)
+    "\n\nPressione qualquer outra tecla para continuar...", fundo=mapa)
 
     pygame.display.flip()
 
@@ -262,8 +262,7 @@ def alerta():
             if event.type == pygame.KEYDOWN:
                 return event.key == pygame.K_RETURN
 
-def tela_inicial():
-    
+def tela_inicial():   
     while True:
         desenhar_texto("A Jornada Do Sandubinha\n\n1 - Começar a aventura\n2 - Introdução\n3 - Sair", 300, fundo=mn)
         pygame.display.flip()

@@ -29,7 +29,6 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, img):
             escrever_mensagem("Sandubinha decide fazer uma 'retirada estratégica'...", fundo=img)
             return 2
         
-
         #Regula a quantidade números sorteados com base nos itens equipados
         for i in sandubinha._itens:
             if i == "Guia de Atendimento" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
@@ -46,7 +45,6 @@ def batalha(sandubinha, nome_inimigo, vida_inimigo, numeros_por_rodada, img):
             elif i == "Espada ZG" and sandubinha._itens_ativos[sandubinha._itens.index(i)] == "Ativado":
                 escrever_mensagem("A Espada ZG brilha intensamente, Sandubinha está pronto para a batalha!", fundo=img)
                 qtd_numeros = 40
-
 
         #Turno do Sandubinha    
         escrever_mensagem(f"Turno do Sandubinha", fundo=img)
